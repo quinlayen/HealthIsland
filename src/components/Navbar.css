@@ -1,0 +1,23 @@
+nav {
+  margin-bottom: 200px;
+}
+.navbar {
+  display: flex;
+  vertical-align: middle;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.navbar-end {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+li {
+  margin-left: 1em;
+}
+
+a {
+  margin-left: 1em;
+}
