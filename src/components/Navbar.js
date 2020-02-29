@@ -8,8 +8,8 @@ handleLogOut = async event =>{
   event.preventDefault();
   try {
     Auth.signOut();
-    this.props.auth.setAuthStatus(false);
-    this.props.auth.user(null);
+    this.props.authentication.setAuthStatus(false);
+    this.props.authentication.user(null);
   }catch (error){
     console.log(error.message)
   }
@@ -17,7 +17,7 @@ handleLogOut = async event =>{
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top scrolling-navbar navbar-custom">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar navbar-custom">
         <div className="container-fluid navbar-custom">
           <a className="navbar-brand" href="/">
             <img src="IMWL_Logo.png" height="70" alt="IMWL logo" />
@@ -58,11 +58,11 @@ handleLogOut = async event =>{
               <ul className="navbar-nav mr-auto" />
               <ul className="navbar-nav">
                 <li>
-                  {this.props.auth.isAuthenticated && this.props.auth.user && (
-                    <p>Hello {this.props.auth.user.username}</p>
+                  {this.props.authentication.isAuthenticated && this.props.authentication.user && (
+                    <p>Hello {this.props.authentication.user.username}</p>
                   )}
                 </li>
-                {!this.props.auth.isAuthenticated && (
+                {!this.props.authentication.isAuthenticated && (
                   <div>
                     <a href="/register" className="btn btn-success">
                       Register
@@ -72,7 +72,7 @@ handleLogOut = async event =>{
                     </a>
                   </div>
                 )}
-                {this.props.auth.isAuthenticated && (
+                {this.props.authentication.isAuthenticated && (
                   <a href="/" onClick={this.handleLogOut} className="btn btn-secondary">
                     Log Out
                   </a>

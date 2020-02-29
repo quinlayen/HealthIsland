@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
+
+
+
 //import {withRouter} from 'react-router-dom'
 
 class Register extends Component {
@@ -37,9 +40,10 @@ class Register extends Component {
         }
       });
       console.log("signupResponse", signupResponse);
-
+     
       this.props.history.push("/welcome");
     } catch (error) {
+      // eslint-disable-next-line no-unused-vars
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);
       this.setState({

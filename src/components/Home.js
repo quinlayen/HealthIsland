@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Home.css'
 
 class Home extends Component {
   render() {
@@ -7,9 +8,11 @@ class Home extends Component {
           <h1>
           At ImmersiveWorlds, we develop experiences and worlds for enterprises that entertain, inspire, create community and drive commerce
           </h1>
+          <br />
+          <br />
         <div className="columns features">
           <div className="column is-4">
-            <div className="card is-shady">
+            <div className="card bg-transparent">
               <div className="card-image has-text-centered">
                 <i className="fa fa-paw"></i>
               </div>
@@ -30,7 +33,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="column is-4">
-            <div className="card is-shady">
+            <div className="card bg-transparent">
               <div className="card-image has-text-centered">
                 <i className="fa fa-empire"></i>
               </div>
@@ -52,7 +55,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="column is-4">
-            <div className="card is-shady">
+            <div className="card bg-transparent">
               <div className="card-image has-text-centered">
                 <i className="fa fa-apple"></i>
               </div>

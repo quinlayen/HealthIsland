@@ -23,10 +23,11 @@ class Login extends Component {
     try {
       const user = await Auth.signIn(this.state.username, this.state.password);
       console.log("user: ", user);
-      this.props.auth.setAuthStatus(true)
-      this.props.auth.setUser(user)
+      this.props.authentication.setAuthStatus(true)
+      this.props.authentication.setUser(user)
       this.props.history.push("/");
     } catch (error) {
+      // eslint-disable-next-line no-unused-vars
       let err = null;
       !error.message ? (err = { message: error }) : (err = error);
       this.setState({
