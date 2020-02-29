@@ -171,7 +171,7 @@ class App extends Component {
       grant_type: "authorization_code",
       client_id: "22BBPF",
       client_secret: "f84d2710e297fecb120bfc8217420ed3",
-      redirect_uri: encodeURIComponent("http://localhost:3000/auth/callback"),
+      redirect_uri: "http://localhost:3000/auth/callback",
       scope: "weight"
     };
 

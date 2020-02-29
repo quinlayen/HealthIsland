@@ -6,11 +6,13 @@ import qs from "qs";
 class Callback extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      token_data: {}
+    };
   }
 
   encodeClientCredentials = (client_id, client_secret) => {
-    return new Buffer(client_id + ":" + client_secret).toString("base64");
+    return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   };
   async getToken() {
     console.log("getToken Called");
@@ -30,9 +32,10 @@ class Callback extends Component {
       )}`
     };
     console.log("headers: ", headers);
-    const urlParams = await queryString.parse(this.props.location.search);
+    const urlParams = queryString.parse(this.props.location.search);
 
-    const code = await urlParams.code;
+    const code = urlParams.code;
+    console.log("authorization code: ", code)
 
     const body = qs.stringify({
       client_id,
@@ -42,13 +45,21 @@ class Callback extends Component {
     });
 
     console.log("body: ", body);
-    const response = await axios.post("https://api.fitbit.com/oauth2/token", {
-      body,
-      headers: headers
-    });
 
-    console.log("response from axios: ", response);
-    //this.setState({ token: response.data.results });
+    try {
+      const response = await axios.post(
+        "https://api.fitbit.com/oauth2/token",
+        body,
+        {
+          headers
+        }
+      );
+
+      console.log("response from axios: ", response.data);
+      //this.setState({ token_data: response.data });
+    } catch (error) {
+      console.log("request error: ", error.request);
+    }
   }
 
   render() {

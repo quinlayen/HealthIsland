@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from "react";
-import axios from "axios";
-import queryString from "query-string";
-import qs from "qs";
+// import axios from "axios";
+// import queryString from "query-string";
+// import qs from "qs";
 
 class FitbitAuth extends Component {
   constructor(props) {
