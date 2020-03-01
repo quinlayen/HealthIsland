@@ -11,9 +11,6 @@ import { Auth } from "aws-amplify";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Particles from "react-particles-js";
 
-
-
-
 const particleParams = {
   particles: {
     number: {
@@ -184,24 +181,7 @@ class App extends Component {
           <Particles
             className="particles"
             params={particleParams}
-            // params={{
-            //   particles: {
-            //     number: {
-            //       value: 50
-            //     },
-            //     size: {
-            //       value: 3
-            //     }
-            //   },
-            //   interactivity: {
-            //     events: {
-            //       onhover: {
-            //         enable: true,
-            //         mode: "repulse"
-            //       }
-            //     }
-            //   }
-            // }}
+          
           />
 
           <Router>
@@ -231,13 +211,13 @@ class App extends Component {
               <Route
                 exact
                 path="/auth/callback"
-                render={props => <Callback {...props} authorization={authorizationProps} />}
+                render={props => <Callback {...props} authentication={authenticationProps} authorization={authorizationProps} />}
               />
 
               <Route
                 exact
                 path="/fitbit/auth"
-                render={props => <FitbitAuth {...props} authorization={authorizationProps} />}
+                render={props => <FitbitAuth {...props} authentication={authenticationProps} authorization={authorizationProps} />}
               />
             </Switch>
           </Router>

@@ -13,6 +13,8 @@ class Register extends Component {
       password: "",
       confirmpassword: "",
       email: "",
+      'custom:fitbitToken': "",
+      'custom:fitbitRefreshToken': "",
       errors: {
         cognito: null,
         blankfield: false,
@@ -30,13 +32,15 @@ class Register extends Component {
     //this.props.setUser(this.state);
 
     //AWS Cognito inegration
-    const { username, email, password } = this.state;
+    const { username, email, password, fitbitRefreshToken, fitbitToken } = this.state;
     try {
       const signupResponse = await Auth.signUp({
         username,
         password,
         attributes: {
-          email
+          email,
+          fitbitToken,
+          fitbitRefreshToken
         }
       });
       console.log("signupResponse", signupResponse);
