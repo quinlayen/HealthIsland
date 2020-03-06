@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
-
-import "./Login.css";
+import "../styles/Login.css";
+import Validate from "./utility/FormValidation";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+
     };
     this.handleChange = this.handleChange.bind(this);
   }

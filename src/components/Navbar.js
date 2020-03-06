@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import "./Navbar.css";
+import "../styles/Navbar.css";
 import { Auth } from "aws-amplify";
 
 class Navbar extends Component {
@@ -16,20 +16,20 @@ class Navbar extends Component {
 
   render() {
     return (
-      <header className="bg-blue-500 py-6 px-4">
-        <nav className="flex items-center justify-between flex-wrap">
-          <div className="flex items-center flex-shrink-0 text-white mr-6">
-            <img
-              className="fill-current h-10 mr-2"
-              src="IMWL_Logo_1k.png"
-              alt=""
-            />
-            <span className="font-semibold text-xl tracking-tight">
-              Immsersive Worlds
-            </span>
-          </div>
-        </nav>
-      </header>
+      // <header className="bg-blue-500 py-6 px-4">
+      //   <nav className="flex items-center justify-between flex-wrap">
+      //     <div className="flex items-center flex-shrink-0 text-white mr-6">
+      //       <img
+      //         className="fill-current h-10 mr-2"
+      //         src="IMWL_Logo_1k.png"
+      //         alt=""
+      //       />
+      //       <span className="font-semibold text-xl tracking-tight">
+      //         Immsersive Worlds
+      //       </span>
+      //     </div>
+      //   </nav>
+      // </header>
       //       <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       //   <div class="flex items-center flex-shrink-0 text-white mr-6">
       //     <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
@@ -58,81 +58,81 @@ class Navbar extends Component {
       //   </div>
       // </nav>
 
-      // <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar navbar-custom">
-      //   <div className="container-fluid navbar-custom">
-      //     <a className="navbar-brand" href="/">
-      //       <img
-      //         src="IMWL_Logo_1k.png
-      //       "
-      //         height="30"
-      //         alt="IMWL logo"
-      //       />
-      //     </a>
-      //     <button
-      //       className="navbar-toggler"
-      //       type="button"
-      //       data-toggle="collapse"
-      //       data-target="#navbarSupportedContent"
-      //       aria-controls="navbarSupportedContent"
-      //       aria-expanded="false"
-      //       aria-label="Toggle navigation"
-      //     >
-      //       <span className="navbar-toggler-icon"></span>
-      //     </button>
-      //     <div className="collapse navbar-collapse" id="navbarSupportContent">
-      //       <div className="navbar-start">
-      //         <ul className="navbar-nav mr-auto">
-      //           <li className="nav-item active">
-      //             <a className="nav-link" href="/">
-      //               Home <span className="sr-only">(current)</span>
-      //             </a>
-      //           </li>
-      //           <li className="nav-item active">
-      //             <a className="nav-link" href="/">
-      //               Products <span className="sr-only">(current)</span>
-      //             </a>
-      //           </li>
-      //           <li className="nav-item active">
-      //             <a className="nav-link" href="/">
-      //               About <span className="sr-only">(current)</span>
-      //             </a>
-      //           </li>
-      //         </ul>
-      //       </div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar navbar-custom">
+        <div className="container-fluid navbar-custom">
+          <a className="navbar-brand" href="/">
+            <img src="IMWL_Logo_1k.png" alt="IMWL logo" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportContent">
+            <div className="navbar-start">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">
+                    <strong>
+                      Home <span className="sr-only">(current)</span>
+                    </strong>
+                  </a>
+                </li>
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">
+                    <strong>
+                      Products <span className="sr-only">(current)</span>
+                    </strong>
+                  </a>
+                </li>
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">
+                    <strong>
+                      About <span className="sr-only">(current)</span>
+                    </strong>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-      //       <div className="navbar-end">
-      //         <ul className="navbar-nav mr-auto" />
-      //         <ul className="navbar-nav">
-      //           <li>
-      //             {this.props.authentication.isAuthenticated &&
-      //               this.props.authentication.user && (
-      //                 <p>Hello {this.props.authentication.user.username}</p>
-      //               )}
-      //           </li>
-      //           {!this.props.authentication.isAuthenticated && (
-      //             <li className="nav-item active">
-      //               <a href="/login" className="nav-link">
-      //                 Log in
-      //               </a>
-      //               <a href="/register" className="btn btn-success">
-      //                 Register
-      //               </a>
-      //             </li>
-      //           )}
-      //           {this.props.authentication.isAuthenticated && (
-      //             <a
-      //               href="/"
-      //               onClick={this.handleLogOut}
-      //               className="btn btn-secondary"
-      //             >
-      //               Log Out
-      //             </a>
-      //           )}
-      //         </ul>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </nav>
+            <div className="navbar-end">
+              <div className="navbar-item">
+                {this.props.authentication.isAuthenticated &&
+                  this.props.authentication.user && (
+                    <p>Welcome {this.props.authentication.user.username}</p>
+                  )}
+                <div className="buttons">
+                  {!this.props.authentication.isAuthenticated && (
+                    <div>
+                      <a href="/register" className="btn btn-success">
+                        <strong>Register</strong>
+                      </a>
+                      <a href="/login" className="btn btn-light">
+                        Log in
+                      </a>
+                    </div>
+                  )}
+                  {this.props.authentication.isAuthenticated && (
+                    <a
+                      href="/"
+                      onClick={this.handleLogOut}
+                      className="btn btn-light"
+                    >
+                      Log out
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     );
   }
 }
