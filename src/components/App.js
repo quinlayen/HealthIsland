@@ -166,10 +166,10 @@ class App extends Component {
       url: "https://www.fitbit.com/oauth2/authorize",
       response_type: "code",
       grant_type: "authorization_code",
-      client_id: "22BBPF",
+      client_id: "22BFR5",
       client_secret: "f84d2710e297fecb120bfc8217420ed3",
       redirect_uri: "http://localhost:3000/auth/callback",
-      scope: "weight"
+      scope: "weight sleep heartrate activity nutrition"
     };
 
     //console.log('isAuthenicated: ',this.state.isAuthenticated);
@@ -178,11 +178,7 @@ class App extends Component {
     return (
       !this.state.isAuthenticating && (
         <div className="App">
-          <Particles
-            className="particles"
-            params={particleParams}
-          
-          />
+          <Particles className="particles" params={particleParams} />
 
           <Router>
             <Navbar authentication={authenticationProps} />
@@ -190,34 +186,54 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                render={props => <Home {...props} authentication={authenticationProps} />}
+                render={props => (
+                  <Home {...props} authentication={authenticationProps} />
+                )}
               />
               <Route
                 exact
                 path="/register"
-                render={props => <Register {...props} authentication={authenticationProps} />}
+                render={props => (
+                  <Register {...props} authentication={authenticationProps} />
+                )}
               />
 
               <Route
                 exact
                 path="/login"
-                render={props => <Login {...props} authentication={authenticationProps} />}
+                render={props => (
+                  <Login {...props} authentication={authenticationProps} />
+                )}
               />
               <Route
                 exact
                 path="/welcome"
-                render={props => <Welcome {...props} authentication={authenticationProps} />}
+                render={props => (
+                  <Welcome {...props} authentication={authenticationProps} />
+                )}
               />
               <Route
                 exact
                 path="/auth/callback"
-                render={props => <Callback {...props} authentication={authenticationProps} authorization={authorizationProps} />}
+                render={props => (
+                  <Callback
+                    {...props}
+                    authentication={authenticationProps}
+                    authorization={authorizationProps}
+                  />
+                )}
               />
 
               <Route
                 exact
                 path="/fitbit/auth"
-                render={props => <FitbitAuth {...props} authentication={authenticationProps} authorization={authorizationProps} />}
+                render={props => (
+                  <FitbitAuth
+                    {...props}
+                    authentication={authenticationProps}
+                    authorization={authorizationProps}
+                  />
+                )}
               />
             </Switch>
           </Router>
