@@ -21,3 +21,8 @@ li {
 a {
   margin-left: 1em;
 }
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
