@@ -1,32 +1,25 @@
-nav {
-  margin-bottom: 200px;
-}
-.navbar {
-  display: flex;
-  vertical-align: middle;
-  flex-direction: row;
-  justify-content: space-between;
-  z-index: 2;
-  height: 60px;
-}
-img{
-  height: 40px;
+.logo {
+  height: 80px;
+  width: auto;
+  float: left;
+  margin-top: 20px;
+  margin-left: 60px;
 }
 
-.navbar-end {
-  justify-content: flex-end;
-  margin-left: auto;
+.main-nav {
+  float: right;
+  list-style: none;
+  margin-top: 30px;
+  margin-right: 60px;
 }
 
-li {
-  margin-left: 1em;
+.main-nav li {
+  display: inline-block;
+  margin-left: 20px;
 }
 
-a {
-  margin-left: 1em;
-}
-
-a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+.main-nav li a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
 }

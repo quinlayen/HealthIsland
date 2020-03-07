@@ -65,7 +65,7 @@ class App extends Component {
     //TODO pass parameters back to App so that all calls are done here instead of each individual component
     return (
       !this.state.isAuthenticating && (
-        <div className="App">
+        <div className="app">
           {/* <Particles className="particles" params={particleParams} /> */}
 
           <Router>

@@ -4,10 +4,10 @@ class Home extends Component {
   render() {
     return (
       <section className="container">
-        <h1>
+        {/* <h1>
           At ImmersiveWorlds, we develop experiences and worlds for enterprises
           that entertain, inspire, create community and drive commerce
-        </h1>
+        </h1> */}
         <br />
         <br />
         <div className="columns features">
