@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
-
-import "./Login.css";
+import FormErrors from "./FormErrors";
+import "../styles/Login.css";
+import Validate from "./utility/FormValidation";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      errors: {
+        cognito: null,
+        blankfield: false
+      }
+
     };
-    this.handleChange = this.handleChange.bind(this);
+  }
+
+  clearErrorState = () => {
+    this.setState({
+      errors: {
+        cognito: null,
+        blankfield: false
+      }
+    });
   }
 
   handleChange = event => {
@@ -19,6 +33,15 @@ class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+
+  //form validation
+  this.clearErrorState();
+  const error = Validate(event, this.state);
+  if (error) {
+    this.setState({
+      errors: {...this.state.errors, ...error}
+    })
+  }
   
     try {
       const user = await Auth.signIn(this.state.username, this.state.password);
@@ -42,7 +65,9 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-        <h2>Log In</h2>
+        <h1>Log In</h1>
+        <br />
+        <FormErrors formerrors={this.state.errors} />
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <input
@@ -64,11 +89,8 @@ class Login extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="form-group form-check">
-            <input className="form-check-input" type="checkbox" id="check1" />
-            <label className="form-check-label" htmlFor="check1">
-              Forgot password?
-            </label>
+          <div className="form-group">
+            <a href="./forgotpassword">Forgot password?</a>
           </div>
           <button type="submit" className="btn btn-primary">
             Login

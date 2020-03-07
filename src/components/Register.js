@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
-
-
+import "../styles/Register.css";
+import FormErrors from "./FormErrors";
+import Validate from "./utility/FormValidation";
 
 //import {withRouter} from 'react-router-dom'
 
@@ -13,8 +14,8 @@ class Register extends Component {
       password: "",
       confirmpassword: "",
       email: "",
-      'custom:fitbitToken': "",
-      'custom:fitbitRefreshToken': "",
+      // "custom:fitbitToken": "",
+      // "custom:fitbitRefreshToken": "",
       errors: {
         cognito: null,
         blankfield: false,
@@ -23,29 +24,46 @@ class Register extends Component {
     };
   }
 
+  clearErrorState = () => {
+    this.setState({
+      errors: {
+        cognito: null,
+        blankfield: false,
+        passwordmatch: false
+      }
+    });
+  };
+
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
 
   handleSubmit = async event => {
     event.preventDefault();
-    //this.props.setUser(this.state);
 
-    //AWS Cognito inegration
-    const { username, email, password, fitbitRefreshToken, fitbitToken } = this.state;
+    // Form validation
+    this.clearErrorState();
+    const error = Validate(event, this.state);
+    if (error) {
+      this.setState({
+        errors: { ...this.state.errors, ...error }
+      });
+    }
+
+    const { username, email, password } = this.state;
+
     try {
       const signupResponse = await Auth.signUp({
         username,
         password,
         attributes: {
-          email,
-          fitbitToken,
-          fitbitRefreshToken
+          email
         }
       });
       console.log("signupResponse", signupResponse);
-     
+
       this.props.history.push("/welcome");
+      setTimeout(() => this.props.history.push("/"), 10000);
     } catch (error) {
       // eslint-disable-next-line no-unused-vars
       let err = null;
@@ -62,7 +80,9 @@ class Register extends Component {
   render() {
     return (
       <div className="container">
-        <h2>Register</h2>
+        <h1>Register</h1>
+        <FormErrors formerrors={this.state.errors} />
+        <br />
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <input

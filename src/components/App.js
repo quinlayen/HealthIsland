@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../styles/App.css";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Register from "./Register";
@@ -9,118 +9,6 @@ import Home from "./Home";
 import Callback from "./Callback";
 import { Auth } from "aws-amplify";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Particles from "react-particles-js";
-
-const particleParams = {
-  particles: {
-    number: {
-      value: 164,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    },
-    color: {
-      value: "#1e1111"
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#b18585"
-      },
-      polygon: {
-        nb_sides: 9
-      },
-      image: {
-        src: "img/github.svg",
-        width: 100,
-        height: 100
-      }
-    },
-    opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false
-      }
-    },
-    size: {
-      value: 3,
-      random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false
-      }
-    },
-    line_linked: {
-      enable: false,
-      distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "bounce",
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200
-      }
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "repulse"
-      },
-      onclick: {
-        enable: true,
-        mode: "push"
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 400,
-        line_linked: {
-          opacity: 1
-        }
-      },
-      bubble: {
-        distance: 400,
-        size: 40,
-        duration: 2,
-        opacity: 8,
-        speed: 3
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 4
-      },
-      remove: {
-        particles_nb: 2
-      }
-    }
-  },
-  retina_detect: true
-};
 
 class App extends Component {
   constructor(props) {
@@ -167,9 +55,9 @@ class App extends Component {
       response_type: "code",
       grant_type: "authorization_code",
       client_id: "22BFR5",
-      client_secret: "f84d2710e297fecb120bfc8217420ed3",
+      client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b",
       redirect_uri: "http://localhost:3000/auth/callback",
-      scope: "weight sleep heartrate activity nutrition"
+      scope: "activity heartrate profile sleep weight"
     };
 
     //console.log('isAuthenicated: ',this.state.isAuthenticated);
@@ -178,7 +66,7 @@ class App extends Component {
     return (
       !this.state.isAuthenticating && (
         <div className="App">
-          <Particles className="particles" params={particleParams} />
+          {/* <Particles className="particles" params={particleParams} /> */}
 
           <Router>
             <Navbar authentication={authenticationProps} />

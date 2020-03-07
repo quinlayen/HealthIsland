@@ -1,0 +1,38 @@
+h1 {
+  font-size: 2em;
+}
+
+
+
+.navbar, .navbar-end, .navbar-start {
+  align-items: stretch !important;
+  display: flex !important;
+}
+
+
+.navbar-item {
+  display: flex !important;
+}
+
+.navbar-end {
+  justify-content: flex-end !important;
+  margin-left: auto !important;
+}
+
+.features {
+  padding-bottom: 3em;
+}
+
+body {
+  visibility: visible !important;
+}
+
+
+.auth form {
+  margin-top: 1em;
+  max-width: 50%;
+}
+
+.buttons {
+  margin-left: 1em;
+}

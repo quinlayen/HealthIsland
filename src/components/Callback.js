@@ -16,7 +16,7 @@ class Callback extends Component {
     return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   };
 
-  //get the users
+  //
   async getToken() {
     console.log("getToken Called");
 
@@ -61,8 +61,10 @@ class Callback extends Component {
         }
       );
       console.log("user: ", user);
+      console.log("response information: ", response);
       console.log("access_token: ", response.data.access_token);
       console.log("refresh_token: ", response.data.refresh_token);
+
       let cognitouser = await Auth.currentAuthenticatedUser();
       console.log("user from cognito: ", cognitouser);
       await Auth.updateUserAttributes(user, {
@@ -73,14 +75,7 @@ class Callback extends Component {
       //this.setState({ token_data: response.data });
       console.log("post request error: ", error);
     }
-    // try {
-    //   await Auth.updateUserAttributes(user.username, {
-    //     "custom:FitbitToken": this.response.data.access_token,
-    //     "custom:FitbitRefreshToken": this.response.data.refresh_token
-    //   });
-    // } catch (error) {
-    //   console.log("updateUserError: ", error);
-    // }
+  
 
     this.props.history.push("/home");
   }
