@@ -1,15 +1,15 @@
-import React, { Fragment } from "react";
+import React from 'react'
+
 import Hero from "./Hero";
 import "../styles/Home.css";
-//import HomeContent from "./HomeContent";
+import Features from './Features';
 
 export default function Home() {
   return (
     <div className="home">
 
       <Hero />
-
-      {/* <HomeContent /> */}
+      {/* <Features /> */}
 
     </div>
   );

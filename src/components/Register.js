@@ -14,8 +14,6 @@ class Register extends Component {
       password: "",
       confirmpassword: "",
       email: "",
-      // "custom:fitbitToken": "",
-      // "custom:fitbitRefreshToken": "",
       errors: {
         cognito: null,
         blankfield: false,

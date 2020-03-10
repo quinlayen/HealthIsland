@@ -1,3 +1,7 @@
+.navbar {
+background: transparent;
+}
+
 .logo {
   height: 90px;
   width: auto;
@@ -7,9 +11,11 @@
 }
 
 .brand {
-  margin-top: 40px;
+  margin-top: 45px;
   margin-left: 20px;
   color: white;
+  font-weight: 400;
+  font-size: 115%;
   display: inline-block;
   text-transform: uppercase;
 }
@@ -17,12 +23,14 @@
 .main-nav {
   float: right;
   list-style: none;
-  margin-top: 40px;
+  margin-top: 45px;
   margin-right: 60px;
 }
 
 .main-nav li {
   display: inline-block;
+  font-weight: 400;
+  font-size: 115%;
   margin-left: 20px;
 }
 

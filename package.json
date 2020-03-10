@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "axios-oauth-client": "^1.2.1",
     "axios-token-interceptor": "^0.2.0",
+    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "postcss-cli": "^7.1.0",
     "qs": "^6.9.1",
@@ -22,7 +23,8 @@
     "react-oauth-flow": "^1.2.0",
     "react-particles-js": "^2.7.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "reactstrap": "^8.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/App.css";
 import Login from "./Login";
+import LoginBox from "./LoginBox";
 import Navbar from "./Navbar";
 import Register from "./Register";
 import Welcome from "./Welcome";
@@ -67,11 +68,8 @@ class App extends Component {
     return (
       !this.state.isAuthenticating && (
         <div className="app">
-          {/* <Particles className="particles" params={particleParams} /> */}
-
           <Router>
             <Navbar authentication={authenticationProps} />
-           
             <Switch>
               <Route
                 exact
@@ -113,7 +111,6 @@ class App extends Component {
                   />
                 )}
               />
-
               <Route
                 exact
                 path="/fitbit/auth"
@@ -125,9 +122,9 @@ class App extends Component {
                   />
                 )}
               />
+              <Route exact path="/features" render={props => <Features />} />
             </Switch>
           </Router>
-          <Features />
         </div>
       )
     );

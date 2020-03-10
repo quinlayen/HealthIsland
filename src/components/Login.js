@@ -3,6 +3,8 @@ import { Auth } from "aws-amplify";
 import FormErrors from "./FormErrors";
 import "../styles/Login.css";
 import Validate from "./utility/FormValidation";
+import { Button, Form, FormGroup, Label,Input} from 'reactstrap';
+
 
 class Login extends Component {
   constructor(props) {
@@ -92,7 +94,7 @@ class Login extends Component {
           <div className="form-group">
             <a href="./forgotpassword">Forgot password?</a>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn">
             Login
           </button>
         </form>

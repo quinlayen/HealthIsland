@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Auth } from "aws-amplify";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   handleLogOut = async event => {
