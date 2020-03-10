@@ -1,0 +1,58 @@
+.section {
+  padding: 80px 0;
+}
+
+.features h2, h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+ 
+}
+
+h2{
+    letter-spacing: 1px;
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.features h3 {
+font-size: 110%;
+margin-bottom: 15px;
+text-align: center;
+}
+
+.features h4 {
+text-transform: uppercase;
+margin-bottom: 15px;
+text-align: center;
+}
+.features h2:after {
+    display: block;
+    height: 2px;
+    background-color: #f39c12;
+    content: " ";
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px
+}
+
+.long-copy {
+    line-height: 145%;
+    width: 70%;
+    margin-left: 15%
+}
+
+.features .btn {
+    display: inline-block;
+    margin-left: 40%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.box {
+    padding: 1%;
+}
+.box p{
+    font-size: 90%;
+    line-height: 145%;
+}

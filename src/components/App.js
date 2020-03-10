@@ -6,6 +6,7 @@ import Register from "./Register";
 import Welcome from "./Welcome";
 import FitbitAuth from "./FitbitAuth";
 import Home from "./Home";
+import Features from "./Features";
 import Callback from "./Callback";
 import { Auth } from "aws-amplify";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -70,6 +71,7 @@ class App extends Component {
 
           <Router>
             <Navbar authentication={authenticationProps} />
+           
             <Switch>
               <Route
                 exact
@@ -125,6 +127,7 @@ class App extends Component {
               />
             </Switch>
           </Router>
+          <Features />
         </div>
       )
     );

@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import "./styles/tailwind.css"
+import "../src/styles/normalize.css"
+import "../src/styles/index.css";
+import "../src/styles/grid.css"
 import config from "./config";
 import Amplify from "aws-amplify";
 import App from "./components/App";

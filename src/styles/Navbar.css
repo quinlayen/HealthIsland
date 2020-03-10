@@ -1,15 +1,23 @@
 .logo {
-  height: 80px;
+  height: 90px;
   width: auto;
   float: left;
   margin-top: 20px;
   margin-left: 60px;
 }
 
+.brand {
+  margin-top: 40px;
+  margin-left: 20px;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
 .main-nav {
   float: right;
   list-style: none;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-right: 60px;
 }
 
@@ -18,8 +26,18 @@
   margin-left: 20px;
 }
 
-.main-nav li a {
+.main-nav li a:link,
+.main-nav li a:visited {
+  padding: 5px 0;
   color: white;
   text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom: 2px solid #cf6d17;
   text-transform: uppercase;
 }
