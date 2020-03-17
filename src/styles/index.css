@@ -13,13 +13,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   height: 100%;
+  color: #555;
+  font-weight: 300;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(../styles/images/Physical_4.jpg);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-  /* clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%) */
 }
 
 button {
@@ -31,13 +34,13 @@ code {
     monospace;
 }
 
-html {
+/* html {
   color: #555;
   font-weight: 300;
   font-size: 20px;
   text-rendering: optimizeLegibility;
   height: 100%;
-}
+} */
 
 .row {
   max-width: 1800px;

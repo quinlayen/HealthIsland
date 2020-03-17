@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import "../styles/Register.css";
-import FormErrors from "./FormErrors";
-import Validate from "./utility/FormValidation";
 
 //import {withRouter} from 'react-router-dom'
 
@@ -13,24 +11,9 @@ class Register extends Component {
       username: "",
       password: "",
       confirmpassword: "",
-      email: "",
-      errors: {
-        cognito: null,
-        blankfield: false,
-        passwordmatch: false
-      }
+      email: ""
     };
   }
-
-  clearErrorState = () => {
-    this.setState({
-      errors: {
-        cognito: null,
-        blankfield: false,
-        passwordmatch: false
-      }
-    });
-  };
 
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
@@ -38,15 +21,6 @@ class Register extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-
-    // Form validation
-    this.clearErrorState();
-    const error = Validate(event, this.state);
-    if (error) {
-      this.setState({
-        errors: { ...this.state.errors, ...error }
-      });
-    }
 
     const { username, email, password } = this.state;
 
@@ -77,55 +51,58 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>Register</h1>
-        <FormErrors formerrors={this.state.errors} />
-        <br />
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              placeholder="Enter username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              id="confirmpassword"
-              placeholder="Confirm password"
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Register
-          </button>
-        </form>
+     
+      <div className="register row">
+         
+        <div className="register-box span-1-of-3">
+        <h2>register</h2>
+          <form className="ui form" onSubmit={this.handleSubmit}>
+
+            <div className="field">
+              <input
+                type="text"
+                className="ui input"
+                id="username"
+                placeholder="Enter username"
+                value={this.state.username}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <input
+                type="email"
+                className="ui input"
+                id="email"
+                placeholder="Enter email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <input
+                type="password"
+                className="ui input"
+                id="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="field">
+              <input
+                type="password"
+                className="ui input"
+                id="confirmpassword"
+                placeholder="Confirm password"
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button type="submit" className="ui button">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

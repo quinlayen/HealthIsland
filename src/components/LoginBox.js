@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
+import "../styles/LoginBox.css";
+import { Button, Form } from "semantic-ui-react";
 
 class LoginBox extends Component {
   constructor(props) {
@@ -37,36 +39,37 @@ class LoginBox extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="inner-container">
-          <div className="header">
-              Login
+      <div className="section-login">
+        <div className="login row">
+          <div className="span-1-of-2">
+            <form onSubmit={this.handleSubmit} className="ui form">
+              <div className="field">
+                <label htmlFor="username">Username</label>
+                <input
+                  className="ui input"
+                  type="text"
+                  name="username"
+                  placeholder="Enter username or email"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="password">Password</label>
+                <input
+                  className="ui input"
+                  type="text"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+              <button className="btn btn-ghost" type="submit">
+                Login
+              </button>
+            </form>
           </div>
-        <div className="box">
-          <div className="input-group">
-            <label htmlFor="username">Username</label>
-            <input
-              className="login-input"
-              type="text"
-              name="username"
-              placeholder="=Enter username or email"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              className="login-input"
-              type="text"
-              name="password"
-              placeholder="Password"
-            />
-          </div>
-          <button className="login-button" type="submit">
-            Login
-          </button>
         </div>
-      </form>
+      </div>
     );
   }
 }

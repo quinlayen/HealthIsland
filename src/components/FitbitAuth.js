@@ -95,7 +95,7 @@ class FitbitAuth extends Component {
         <div className="fitbitauth">
           <a
             href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
-            className="btn btn-secondary"
+            className="btn btn-ghost"
           >
             Login
           </a>

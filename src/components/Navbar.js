@@ -41,7 +41,10 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li>
-                  <a className="" href="/login">
+                  <a
+                    className=""
+                    href="https://healthisland.auth.us-west-2.amazoncognito.com/login?client_id=7snhq2k4sb77gj8ablhiuju2u6&response_type=code&scope=phone+email+openid&redirect_uri=http://localhost:3000/"
+                  >
                     Login
                   </a>
                 </li>

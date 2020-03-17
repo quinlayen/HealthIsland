@@ -6,7 +6,7 @@ import "../src/styles/grid.css"
 import config from "./config";
 import Amplify from "aws-amplify";
 import App from "./components/App";
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 Amplify.configure({
   Auth: {
