@@ -7,8 +7,7 @@ class Features extends Component {
       <section className="features section group">
         <div className="features row">
           <h2>
-            AR & VR Development Platform &mdash; Brand Building, eCommerce and
-            Enterprise applications.
+            AR & VR Development Platform
           </h2>
           <p className="long-copy">
             The world is no longer just 2D or 3D. Our reality is now augmented,
@@ -35,6 +34,10 @@ class Features extends Component {
             scalability for thousands of simultaneous users.
           </p>
           <br />
+          <br />
+          <h2>
+          Brand Building, eCommerce and Enterprise applications
+          </h2>
           <a className="features btn btn-ghost" href="/">
             Start Building Your World Today
           </a>

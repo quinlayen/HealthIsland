@@ -11,9 +11,10 @@ background: transparent;
 }
 
 .brand {
-  margin-top: 45px;
+  letter-spacing: 1px;;
+  margin-top: 50px;
   margin-left: 20px;
-  color: white;
+  color: #444444;
   font-weight: 400;
   font-size: 115%;
   display: inline-block;
@@ -37,7 +38,7 @@ background: transparent;
 .main-nav li a:link,
 .main-nav li a:visited {
   padding: 5px 0;
-  color: white;
+  color: #444444;
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 2px solid transparent;

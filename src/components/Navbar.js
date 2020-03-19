@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Auth } from "aws-amplify";
-import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   handleLogOut = async event => {
@@ -21,11 +20,11 @@ class Navbar extends Component {
         <div className="row">
           <img
             className="logo"
-            src={require("../styles/images/IMWL_Logo_white.png")}
+            src={require("../styles/images/IMWL_Logo.png")}
             alt="IMWL Logo"
           />
           <div className="brand">
-            <p>Immersive Worlds</p>
+            <h3>Immersive Worlds</h3>
           </div>
           <div className="main-nav">
             {this.props.authentication.isAuthenticated &&
@@ -41,10 +40,7 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li>
-                  <a
-                    className=""
-                    href="https://healthisland.auth.us-west-2.amazoncognito.com/login?client_id=7snhq2k4sb77gj8ablhiuju2u6&response_type=code&scope=phone+email+openid&redirect_uri=http://localhost:3000/"
-                  >
+                  <a className="" href="/login">
                     Login
                   </a>
                 </li>
@@ -63,3 +59,5 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+
+
