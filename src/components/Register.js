@@ -12,13 +12,18 @@ class Register extends Component {
           console.log("signed in");
           this.props.authentication.setAuthState("signedIn");
           this.props.authentication.getUserData();
+          this.props.history.push("/");
           //this.props.authentication.setState({ authData: data.payload.data });
           break;
-          case "signOut":
-            console.log("signed out");
-            this.props.authentication.setAuthState("signedOut");
-            //this.props.authentication.setState({ authData: data.payload.data });
-            break;
+        case "signUp":
+          console.log('signed up');
+          this.props.authentication.setAuthState();
+          break;
+        case "signOut":
+          console.log("signed out");
+          this.props.authentication.setAuthState("signedOut");
+          //this.props.authentication.setState({ authData: data.payload.data });
+          break;
         case "signIn_failure":
           this.setState({
             authState: "signIn",
@@ -35,7 +40,7 @@ class Register extends Component {
   render() {
     return (
       <div className="register">
-        <Authenticator authState="signUp" />
+        <Authenticator />
       </div>
     );
   }
@@ -167,9 +172,6 @@ export default Register;
 //     </div>
 //   </div> */}
 
-
-
-
 // import React, { Component } from "react";
 // import { Auth } from "aws-amplify";
 // import "../styles/Register.css";
@@ -223,9 +225,9 @@ export default Register;
 
 //   render() {
 //     return (
-     
+
 //       <div className="register row">
-         
+
 //         <div className="register-box span-1-of-3">
 //         <h2>register</h2>
 //           <form className="ui form" onSubmit={this.handleSubmit}>

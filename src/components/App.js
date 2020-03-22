@@ -20,12 +20,14 @@ class App extends Component {
       user: null,
       authError: null
     };
+  
   }
 
-  componentDidMount() {
-    //this.getUserData();
-    // Hub.listen("auth", this.listener);
-  }
+  // componentDidMount() {
+  //   if (this.state.authState === "signedIn") {
+  //     this.props.history.push("/home");
+  //   }
+  // }
 
   getUserData = async () => {
     try {
@@ -64,6 +66,7 @@ class App extends Component {
   render() {
     const authenticationProps = {
       user: this.state.user,
+      authState: this.state.authState,
       authData: null,
       setAuthState: this.setAuthState,
       getUserData: this.getUserData
@@ -141,7 +144,7 @@ class App extends Component {
     );
   }
 }
-
+export default App;
 //from here down is what I used previously
 //   this.state = {
 //     isAuthenticated: false,
@@ -258,5 +261,3 @@ class App extends Component {
 //     );
 //   }
 // }
-
-export default App;

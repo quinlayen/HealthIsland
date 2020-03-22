@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Auth } from "aws-amplify";
+import {Link} from 'react-router-dom';
 
 class Navbar extends Component {
   handleLogOut = async event => {
@@ -18,11 +19,13 @@ class Navbar extends Component {
     return (
       <nav className="navbar">
         <div className="row">
+          <Link to="/">
           <img
             className="logo"
             src={require("../styles/images/IMWL_Logo.png")}
             alt="IMWL Logo"
           />
+          </Link>
           <div className="brand">
             <h3>Immersive Worlds</h3>
           </div>
@@ -35,22 +38,22 @@ class Navbar extends Component {
             {!this.props.authentication.isAuthenticated && (
               <ul>
                 <li>
-                  <a className="" href="/register">
+                  <Link className="" to="/register">
                     Register
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a className="" href="/login">
+                  <Link className="" to="/login">
                     Login
-                  </a>
+                  </Link>
                 </li>
               </ul>
             )}
           </div>
           {this.props.authentication.isAuthenticated && (
-            <a href="/" onClick={this.handleLogOut} className="btn btn-light">
+            <Link to="/" onClick={this.handleLogOut} className="btn btn-light">
               Log out
-            </a>
+            </Link>
           )}
         </div>
       </nav>
