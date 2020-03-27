@@ -9,14 +9,15 @@ class Register extends Component {
     Hub.listen("auth", data => {
       switch (data.payload.event) {
         case "signIn":
+          console.log("listener data ", data.payload.event);
           console.log("signed in");
           this.props.authentication.setAuthState("signedIn");
           this.props.authentication.getUserData();
-          this.props.history.push("/");
+          //this.props.history.push("/");
           //this.props.authentication.setState({ authData: data.payload.data });
           break;
         case "signUp":
-          console.log('signed up');
+          console.log("signed up");
           this.props.authentication.setAuthState();
           break;
         case "signOut":
@@ -26,7 +27,7 @@ class Register extends Component {
           break;
         case "signIn_failure":
           this.setState({
-            authState: "signIn",
+            authState: false,
             authData: null,
             authError: data.payload.data
           });

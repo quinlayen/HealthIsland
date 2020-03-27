@@ -15,58 +15,48 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authState: "signIn",
+      isAuthenticated: false,
       authData: null,
       user: null,
       authError: null
     };
-  
   }
 
-  // componentDidMount() {
-  //   if (this.state.authState === "signedIn") {
-  //     this.props.history.push("/home");
-  //   }
-  // }
+ componentDidMount() {
+  try {
+    this.getUserData();
+    //const session = Auth.currentSession();
+    //console.log("session: ", session);
+    //const user = await Auth.currentAuthenticatedUser();
+    //console.log('user in componentDidMount ', user)
+    //console.log('username ', user.username)
+  } catch (error) {
+    console.log(error);
+  }
+  //this.setState({ isAuthenticating: false });
+}
+
+
 
   getUserData = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
-      user ? this.setState({ user }) : this.setState({ user: null });
+      user ? this.setState({ user }) && this.setState({isAuthenitcated: true}) : this.setState({ user: null });
       console.log("user ", user);
     } catch (error) {
       console.log(error);
     }
   };
 
-  setAuthState = signInState => {
-    this.setState({ authState: signInState });
-    console.log("authState ", this.state.authState);
+  setAuthState = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+    console.log("isAuthenticated ", this.state.isAuthenticated);
   };
-
-  // listener = data => {
-  //   switch (data.payload.event) {
-  //     case "signIn":
-  //       console.log("signed in");
-  //       this.getUserData();
-  //       this.setAuthStatus(true);
-  //       break;
-  //     case "signUp":
-  //       console.log("signed up");
-  //       break;
-  //     case "signOut":
-  //       console.log("signed out");
-  //       this.setState({ user: null });
-  //     // eslint-disable-next-line no-fallthrough
-  //     default:
-  //       return;
-  //   }
-  // };
 
   render() {
     const authenticationProps = {
       user: this.state.user,
-      authState: this.state.authState,
+      isAuthenticated: this.state.isAuthenitcated,
       authData: null,
       setAuthState: this.setAuthState,
       getUserData: this.getUserData

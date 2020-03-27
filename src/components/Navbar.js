@@ -32,7 +32,12 @@ class Navbar extends Component {
           <div className="main-nav">
             {this.props.authentication.isAuthenticated &&
               this.props.authentication.user && (
+                <div>
                 <p>Welcome {this.props.authentication.user.username}</p>
+                <Link onClick={this.handleLogOut} className="btn btn-light">
+                Log out
+              </Link>
+              </div>
               )}
 
             {!this.props.authentication.isAuthenticated && (
@@ -50,11 +55,11 @@ class Navbar extends Component {
               </ul>
             )}
           </div>
-          {this.props.authentication.isAuthenticated && (
-            <Link to="/" onClick={this.handleLogOut} className="btn btn-light">
+          {/* {this.props.authentication.isAuthenticated && (
+            <Link onClick={this.handleLogOut} className="btn btn-light">
               Log out
             </Link>
-          )}
+          )} */}
         </div>
       </nav>
     );

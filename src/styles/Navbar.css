@@ -11,16 +11,16 @@ background: transparent;
 }
 
 .brand {
-  letter-spacing: 1px;;
   margin-top: 50px;
   margin-left: 20px;
   color: #444444;
-  font-weight: 400;
-  font-size: 115%;
   display: inline-block;
   text-transform: uppercase;
 }
 
+.brand h3 {
+  font-size:110%;
+}
 .main-nav {
   float: right;
   list-style: none;
