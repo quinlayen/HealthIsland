@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import 'bulma/css/bulma.min.css';
 import "../src/styles/normalize.css"
 import "../src/styles/index.css";
 import "../src/styles/grid.css"

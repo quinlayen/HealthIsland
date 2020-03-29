@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import "../styles/App.css";
+//import "../styles/App.css";
+import "../sass/App.scss"
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Register from "./Register";
 import Welcome from "./Welcome";
 import FitbitAuth from "./FitbitAuth";
 import Home from "./Home";
+import Footer from "./Footer";
 import Features from "./Features";
 import Callback from "./Callback";
 import { Auth, Hub } from "aws-amplify";
@@ -25,6 +27,7 @@ class App extends Component {
  componentDidMount() {
   try {
     this.getUserData();
+    console.log("isAuthenticated in app: ", this.state.isAuthenticated);
     //const session = Auth.currentSession();
     //console.log("session: ", session);
     //const user = await Auth.currentAuthenticatedUser();
@@ -37,12 +40,11 @@ class App extends Component {
 }
 
 
-
   getUserData = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
-      user ? this.setState({ user }) && this.setState({isAuthenitcated: true}) : this.setState({ user: null });
-      console.log("user ", user);
+      user ? this.setState({ user }) && this.setState({isAuthenticated: true}) : this.setState({ user: null });
+      console.log("user in app:", user);
     } catch (error) {
       console.log(error);
     }
@@ -50,13 +52,13 @@ class App extends Component {
 
   setAuthState = authenticated => {
     this.setState({ isAuthenticated: authenticated });
-    console.log("isAuthenticated ", this.state.isAuthenticated);
+    console.log("isAuthenticated in setAuthState: ", this.state.isAuthenticated);
   };
 
   render() {
     const authenticationProps = {
       user: this.state.user,
-      isAuthenticated: this.state.isAuthenitcated,
+      isAuthenticated: this.state.isAuthenticated,
       authData: null,
       setAuthState: this.setAuthState,
       getUserData: this.getUserData
@@ -129,6 +131,7 @@ class App extends Component {
             />
             <Route exact path="/features" render={props => <Features />} />
           </Switch>
+          <Footer />
         </Router>
       </div>
     );
