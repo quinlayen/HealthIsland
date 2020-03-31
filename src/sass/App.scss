@@ -3,6 +3,15 @@
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/elements/button.sass";
 @import "~bulma/sass/layout/section.sass";
+
+.fitbitauth h1{
+  font-size: 150%;
+}
+
+.fitbitauth h2{
+  font-size: 120%;
+}
+
 .login {
   margin: 5em 1em;
 }
@@ -28,8 +37,14 @@
   padding: 0 !important;
 }
 
+.logo{
+  margin-top: 13px;
+  margin-left: 15px;
+}
+
 .navbar-item {
   display: flex !important;
+  text-transform: uppercase;
 }
 
 .navbar-end {
@@ -39,4 +54,8 @@
 
 .features {
   padding-bottom: 3em;
+}
+
+.greeting {
+  padding-top: 15px;
 }

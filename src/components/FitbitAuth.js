@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-constructor */
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import qs from "qs";
@@ -71,7 +71,7 @@ class FitbitAuth extends Component {
       console.log("refresh_token: ", response.data.refresh_token);
       let cognitouser = await Auth.currentAuthenticatedUser();
       console.log("user from cognito: ", cognitouser);
-      await Auth.updateUserAttributes(user, {
+      await Auth.updateUserAttributes(cognitouser, {
         "custom:FitbitToken": response.data.access_token,
         "custom:FitbitRefreshToken": response.data.refresh_token
       });
@@ -79,7 +79,7 @@ class FitbitAuth extends Component {
       console.log("post request error: ", error);
     }
 
-    this.props.history.push("/home");
+    //this.props.history.push("/home");
   }
 
   render() {
@@ -91,16 +91,42 @@ class FitbitAuth extends Component {
       scope
     } = this.props.authorization;
     return (
-      <div className="container">
-        <div className="fitbitauth">
-          <a
-            href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
-            className="btn btn-ghost"
-          >
-            Login
-          </a>
-        </div>
-      </div>
+      <Fragment>
+        <section className="fitbitauth section group">
+          <div className="container">
+            <div className="card">
+              <div className="card-image has-text-centered">
+                <div className="card content">
+                  <h1 className="greeting">Welcome!</h1>
+                  <h1>You have successfully logged in.</h1>
+                  <br />
+                  <div className="card content">
+                  <div className="section group">
+                    <h2>
+                      In order to take full advantage of the Health Island
+                      application, we would like to access your Fitbit
+                      information.
+                    </h2>
+                    <h2>
+                      Please click the button below to allow this application to
+                      access your Fitbit account.
+                    </h2>
+                  </div>
+                  <div className="section group">
+                    <a
+                      href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
+                      className="button is-link"
+                    >
+                      Access Fitbit Account
+                    </a>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Fragment>
     );
   }
 }

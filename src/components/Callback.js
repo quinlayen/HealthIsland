@@ -36,11 +36,10 @@ class Callback extends Component {
         client_secret
       )}`
     };
-    //console.log("headers: ", headers);
+
     const urlParams = queryString.parse(this.props.location.search);
 
     const code = urlParams.code;
-    //console.log("authorization code: ", code);
 
     const body = qs.stringify({
       client_id,
@@ -48,8 +47,6 @@ class Callback extends Component {
       redirect_uri,
       code
     });
-
-    //console.log("body: ", body);
 
     //use code to get access-token
     try {
@@ -72,17 +69,28 @@ class Callback extends Component {
         "custom:FitbitRefreshToken": response.data.refresh_token
       });
     } catch (error) {
-      //this.setState({ token_data: response.data });
       console.log("post request error: ", error);
     }
-  
 
-    this.props.history.push("/home");
+    this.props.history.push("/");
   }
 
   render() {
     this.getToken();
-    return <div>Callback</div>;
+    return //(
+    //   <Fragment>
+    //     <section className="hero is-link">
+    //       <div className="container">
+    //         <div className="has-text-centered">
+    //           <h2>Welcome!</h2>
+    //           <h2>You have successfully registered a new account.</h2>
+
+    //           <h2>You will be Redirected to homepage in a few seconds </h2>
+    //         </div>
+    //       </div>
+    //     </section>
+    //   </Fragment>
+    // );
   }
 }
 export default Callback;

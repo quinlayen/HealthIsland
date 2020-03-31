@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Hub, Auth } from "aws-amplify";
+import { Hub } from "aws-amplify";
 
 //import "../styles/Login.css";
 import { Authenticator, Greetings } from "aws-amplify-react";
@@ -10,12 +10,12 @@ class Login extends Component {
     Hub.listen("auth", data => {
       switch (data.payload.event) {
         case "signIn":
-          console.log("authenticated");
-          console.log("listener data ", data.payload.event);
+          // console.log("authenticated");
+          // console.log("listener data ", data.payload.event);
           this.props.authentication.setAuthState(true);
           this.props.authentication.getUserData();
           //TODO: the below push line gives a warring that I should eventually fix
-          this.props.history.push("/");
+          this.props.history.push("/fitbit/auth");
           break;
         case "signOut":
           console.log("signed out");
