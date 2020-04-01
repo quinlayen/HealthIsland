@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
+import call from "../apis/calls";
 import React, { Component, Fragment } from "react";
-import axios from "axios";
+//import axios from "axios";
 import queryString from "query-string";
 import qs from "qs";
 import { Auth } from "aws-amplify";
@@ -20,9 +21,10 @@ class FitbitAuth extends Component {
     console.log("state: ", state);
     return state;
   };
-  encodeClientCredentials = (client_id, client_secret) => {
-    return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
-  };
+
+  // encodeClientCredentials = (client_id, client_secret) => {
+  //   return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+  // };
 
   //get the users
   async getToken() {
@@ -39,7 +41,7 @@ class FitbitAuth extends Component {
 
     let headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${this.encodeClientCredentials(
+      Authorization: `Basic ${this.props.authorization.encodeClientCredentials(
         client_id,
         client_secret
       )}`
@@ -58,13 +60,15 @@ class FitbitAuth extends Component {
 
     //use code to get access-token
     try {
-      const response = await axios.post(
-        "https://api.fitbit.com/oauth2/token",
-        body,
-        {
-          headers
-        }
-      );
+      const response = call.fitbitToken.post("/", body, { headers });
+      // const response = await axios.post(
+      //   "https://api.fitbit.com/oauth2/token",
+      //   body,
+      //   {
+      //     headers
+      //   }
+      // );
+
       console.log("response information: ", response);
       console.log("user: ", user);
       console.log("access_token: ", response.data.access_token);
@@ -78,8 +82,6 @@ class FitbitAuth extends Component {
     } catch (error) {
       console.log("post request error: ", error);
     }
-
-    //this.props.history.push("/home");
   }
 
   render() {
@@ -101,27 +103,27 @@ class FitbitAuth extends Component {
                   <h1>You have successfully logged in.</h1>
                   <br />
                   <div className="card content">
-                  <div className="section group">
-                    <h2>
-                      In order to take full advantage of the Health Island
-                      application, we would like to access your Fitbit
-                      information.
-                    </h2>
-                    <h2>
-                      Please click the button below to allow this application to
-                      access your Fitbit account.
-                    </h2>
-                  </div>
-                  <div className="section group">
-                    <a
-                      href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
-                      className="button is-link"
-                    >
-                      Access Fitbit Account
-                    </a>
+                    <div className="section group">
+                      <h2>
+                        In order to take full advantage of the Health Island
+                        application, we would like to access your Fitbit
+                        information.
+                      </h2>
+                      <h2>
+                        Please click the button below to allow this application
+                        to access your Fitbit account.
+                      </h2>
+                    </div>
+                    <div className="section group">
+                      <a
+                        href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
+                        className="button is-link"
+                      >
+                        Access Fitbit Account
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
