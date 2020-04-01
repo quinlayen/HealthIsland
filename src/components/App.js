@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import "../styles/App.css";
+//import "../styles/App.css";
+import call from "../apis/calls";
+import "../sass/App.scss";
+import axios from "axios";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import Register from "./Register";
 import Welcome from "./Welcome";
 import FitbitAuth from "./FitbitAuth";
 import Home from "./Home";
+import Footer from "./Footer";
 import Callback from "./Callback";
 import { Auth } from "aws-amplify";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -16,38 +20,117 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       isAuthenticating: true,
+      authData: null,
       user: null,
-      status: "initial"
+      authError: null,
+      isRefreshing: false,
+      client_id: "22BFR5",
+      client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b"
     };
   }
 
-  setAuthStatus = authenticated => {
-    this.setState({ isAuthenticated: authenticated });
-  };
-
-  setUser = user => {
-    this.setState({ user: user });
-  };
-
   async componentDidMount() {
     try {
+      this.getUserData();
       const session = await Auth.currentSession();
-      this.setAuthStatus(true);
+      this.setAuthState(true);
       console.log("session: ", session);
       const user = await Auth.currentAuthenticatedUser();
-      this.setUser(user);
+      this.getUserData(user);
     } catch (error) {
       console.log(error);
     }
     this.setState({ isAuthenticating: false });
+    this.setInterceptors();
   }
+
+  getUserData = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      user
+        ? this.setState({ user }) && this.setState({ isAuthenticated: true })
+        : this.setState({ user: null });
+
+      console.log("user in app:", user);
+      // const userAttributes = Object.keys(user.attributes).map(key => {
+      //   return [user.attributes[key]];
+      // });
+      //console.log("refreshToken: ", userAttributes[3][0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  setAuthState = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+    console.log(
+      "isAuthenticated in setAuthState: ",
+      this.state.isAuthenticated
+    );
+  };
+
+  encodeClientCredentials = (client_id, client_secret) => {
+    return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+  };
+
+  refreshFitbitToken = async () => {
+    let headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${this.props.authorization.encodeClientCredentials(
+        this.state.client_id,
+        this.state.client_secret
+      )}`
+    };
+    const userAttributes = Object.keys(this.state.user.attributes).map(key => {
+      return [this.state.user.attributes[key]];
+    });
+    const refreshToken = userAttributes[3][0];
+    const body = {
+      grant_type: "refresh_token",
+      refresh_token: refreshToken
+    };
+    try {
+      await axios.post("/", body, { headers });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  setInterceptors = async () => {
+    try {
+      await axios.interceptos.response.use(
+        response => {
+          console.log("response in setInterceptor", response);
+          return response;
+        },
+        error => {
+          const {
+            response: { status }
+          } = error;
+          console.log("response in setInterceptor Error: ", error);
+          if (status === 401) {
+            if (!this.state.isRefreshing) {
+              this.setState({ isRefreshing: true });
+              this.refreshFitbitToken();
+              if (status === 200 || status === 204) {
+                this.setState({ isRefreshing: true });
+              }
+            }
+          }
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   render() {
     const authenticationProps = {
-      isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
-      setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
+      isAuthenticated: this.state.isAuthenticated,
+      authData: null,
+      setAuthState: this.setAuthState,
+      getUserData: this.getUserData
     };
 
     const authorizationProps = {
@@ -56,18 +139,14 @@ class App extends Component {
       grant_type: "authorization_code",
       client_id: "22BFR5",
       client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b",
-      redirect_uri: "http://localhost:3000/auth/callback",
-      scope: "activity heartrate profile sleep weight"
+      redirect_uri: "http://localhost:3000",
+      scope: "activity heartrate profile sleep weight",
+      encodeClientCredentials: this.encodeClientCredentials
     };
 
-    //console.log('isAuthenicated: ',this.state.isAuthenticated);
-
-    //TODO pass parameters back to App so that all calls are done here instead of each individual component
     return (
       !this.state.isAuthenticating && (
-        <div className="App">
-          {/* <Particles className="particles" params={particleParams} /> */}
-
+        <div className="app">
           <Router>
             <Navbar authentication={authenticationProps} />
             <Switch>
@@ -75,7 +154,11 @@ class App extends Component {
                 exact
                 path="/"
                 render={props => (
-                  <Home {...props} authentication={authenticationProps} />
+                  <Home
+                    {...props}
+                    authentication={authenticationProps}
+                    authorization={authorizationProps}
+                  />
                 )}
               />
               <Route
@@ -111,7 +194,6 @@ class App extends Component {
                   />
                 )}
               />
-
               <Route
                 exact
                 path="/fitbit/auth"
@@ -124,11 +206,11 @@ class App extends Component {
                 )}
               />
             </Switch>
+            <Footer />
           </Router>
         </div>
       )
     );
   }
 }
-
 export default App;

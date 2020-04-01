@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Hero extends Component {
-  render() {
-    return (
-      <section className="hero">
-          <div className="container flex ">
-            <img src="../../public/Physical_14.jpg" className="img-fluid" alt="Be a hero" />
-          </div>
-      </section>
-    );
-  }
+export default function Hero() {
+  return (
+    <section className="hero is-link">
+      <div className="hero-body">
+        <div className="container">
+          <img
+            src={require("../styles/images/Physical_4.png")}
+            alt="AR & VR Development"
+          />
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default Hero;

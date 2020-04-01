@@ -1,101 +1,43 @@
 import React, { Component } from "react";
-import { Auth } from "aws-amplify";
-import FormErrors from "./FormErrors";
-import "../styles/Login.css";
-import Validate from "./utility/FormValidation";
+import { Hub } from "aws-amplify";
+
+//import "../styles/Login.css";
+import { Authenticator, Greetings } from "aws-amplify-react";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: "",
-      password: "",
-      errors: {
-        cognito: null,
-        blankfield: false
-      }
-
-    };
-  }
-
-  clearErrorState = () => {
-    this.setState({
-      errors: {
-        cognito: null,
-        blankfield: false
+    Hub.listen("auth", data => {
+      switch (data.payload.event) {
+        case "signIn":
+          // console.log("authenticated");
+          // console.log("listener data ", data.payload.event);
+          this.props.authentication.setAuthState(true);
+          this.props.authentication.getUserData();
+          //TODO: the below push line gives a warring that I should eventually fix
+          this.props.history.push("/fitbit/auth");
+          break;
+        case "signOut":
+          console.log("signed out");
+          this.props.authentication.setAuthState(false);
+          break;
+        case "signIn_failure":
+          this.setState({
+            isAuthenticated: false,
+            authData: null,
+            authError: data.payload.data
+          });
+          break;
+        default:
+          break;
       }
     });
   }
 
-  handleChange = event => {
-    this.setState({ [event.target.id]: event.target.value });
-  };
-
-  handleSubmit = async event => {
-    event.preventDefault();
-
-  //form validation
-  this.clearErrorState();
-  const error = Validate(event, this.state);
-  if (error) {
-    this.setState({
-      errors: {...this.state.errors, ...error}
-    })
-  }
-  
-    try {
-      const user = await Auth.signIn(this.state.username, this.state.password);
-      console.log("user: ", user);
-      this.props.authentication.setAuthStatus(true)
-      this.props.authentication.setUser(user)
-      this.props.history.push("/");
-    } catch (error) {
-      // eslint-disable-next-line no-unused-vars
-      let err = null;
-      !error.message ? (err = { message: error }) : (err = error);
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: error
-        }
-      });
-    }
-  };
-
   render() {
     return (
-      <div className="container">
-        <h1>Log In</h1>
-        <br />
-        <FormErrors formerrors={this.state.errors} />
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              placeholder="Enter username or email"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <a href="./forgotpassword">Forgot password?</a>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
+      <div className="login">
+        <Authenticator hide={[Greetings]} />
       </div>
     );
   }

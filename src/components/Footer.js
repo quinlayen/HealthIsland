@@ -1,36 +1,13 @@
-import React, { Component } from "react";
-import "./Footer.css";
+import React from 'react'
 
-class Footer extends Component {
-  render() {
-    return (
-      <footer className="footer">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar navbar-custom">
-          <div className="container-fluid navbar-custom">
-            <div className="navbar-start">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/">
-                    Private Policy <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item active">
-                  <a className="nav-link" href="/">
-                    Links <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item active=false">
-                  <a className="nav-link" href="/">
-                    News <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </footer>
-    );
-  }
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="content has-text-centered">
+        <p>
+           Immersive Worlds 2020
+        </p>
+      </div>
+    </footer>
+  )
 }
-
-export default Footer;
