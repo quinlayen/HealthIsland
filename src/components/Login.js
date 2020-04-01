@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Hub } from "aws-amplify";
 
 //import "../styles/Login.css";
-import { Authenticator, Greetings } from "aws-amplify-react";
+import { Authenticator, Greetings, AmplifyTheme } from "aws-amplify-react";
 
 class Login extends Component {
   constructor(props) {
@@ -35,12 +35,21 @@ class Login extends Component {
   }
 
   render() {
+    const theme = {
+      ...AmplifyTheme,
+      button: {
+        ...AmplifyTheme.button,
+        backgroundColor: "var(--light-blue)"
+      }
+    }
     return (
       <div className="login">
-        <Authenticator hide={[Greetings]} />
+        <Authenticator hide={[Greetings]} theme={theme} />
       </div>
     );
+
   }
+
 }
 
 export default Login;
