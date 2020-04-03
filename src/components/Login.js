@@ -41,7 +41,11 @@ class Login extends Component {
         ...AmplifyTheme.button,
         backgroundColor: "var(--light-blue)"
       }
+<<<<<<< HEAD
     }
+=======
+    };
+>>>>>>> flowRefactor
     return (
       <div className="login">
         <Authenticator hide={[Greetings]} theme={theme} />
@@ -54,16 +58,3 @@ class Login extends Component {
 
 export default Login;
 
-// if (this.props.button === "login") {
-//   return (
-//     <div className="login">
-//       <Authenticator hide={[Greetings]} />
-//     </div>
-//   );
-// } else {
-//   return (
-//     <div className="register">
-//       <Authenticator authState="signUp" />
-//     </div>
-//   );
-// }
