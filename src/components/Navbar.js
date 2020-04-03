@@ -8,11 +8,17 @@ export default class Navbar extends Component {
     try {
       Auth.signOut();
       this.props.authentication.setAuthState(false);
-      this.props.history.push("/")
+      this.props.history.push("/");
       //this.props.authentication.user(null);
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  whichButton = event => {
+    event.preventDefault();
+    console.log("login value: ", event.target.id);
+    this.props.authentication.button(event.target.id);
   };
 
   render() {
@@ -45,17 +51,31 @@ export default class Navbar extends Component {
               <div className="buttons">
                 {!this.props.authentication.isAuthenticated && (
                   <div>
-                    <Link to="/register" className="button is-link">
+                    <Link
+                      to="/register"
+                      className="button is-link"
+                      id="register"
+                      //onClick={this.whichButton}
+                    >
                       Sign up
                     </Link>
-                    <Link to="/login" className="button is-light">
+                    <Link
+                      to="/login"
+                      className="button is-light"
+                      id="login"
+                      //onClick={this.whichButton}
+                    >
                       Log in
                     </Link>
                   </div>
                 )}
                 {this.props.authentication.isAuthenticated && (
                   <div className="navbar-item">
-                    <Link className="button is-light" to="/" onClick={this.handleLogOut}>
+                    <Link
+                      className="button is-light"
+                      to="/"
+                      onClick={this.handleLogOut}
+                    >
                       Logout
                     </Link>
                   </div>

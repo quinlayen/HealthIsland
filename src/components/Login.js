@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Hub } from "aws-amplify";
-
-//import "../styles/Login.css";
 import { Authenticator, Greetings } from "aws-amplify-react";
 
 class Login extends Component {
@@ -10,8 +8,6 @@ class Login extends Component {
     Hub.listen("auth", data => {
       switch (data.payload.event) {
         case "signIn":
-          // console.log("authenticated");
-          // console.log("listener data ", data.payload.event);
           this.props.authentication.setAuthState(true);
           this.props.authentication.getUserData();
           //TODO: the below push line gives a warring that I should eventually fix
@@ -20,6 +16,10 @@ class Login extends Component {
         case "signOut":
           console.log("signed out");
           this.props.authentication.setAuthState(false);
+          break;
+        case "signUp":
+          console.log("signed up");
+          this.props.authentication.setAuthState();
           break;
         case "signIn_failure":
           this.setState({
@@ -44,3 +44,17 @@ class Login extends Component {
 }
 
 export default Login;
+
+// if (this.props.button === "login") {
+//   return (
+//     <div className="login">
+//       <Authenticator hide={[Greetings]} />
+//     </div>
+//   );
+// } else {
+//   return (
+//     <div className="register">
+//       <Authenticator authState="signUp" />
+//     </div>
+//   );
+// }

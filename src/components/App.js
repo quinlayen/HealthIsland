@@ -4,8 +4,8 @@ import call from "../apis/calls";
 import "../sass/App.scss";
 import axios from "axios";
 import Login from "./Login";
-import Navbar from "./Navbar";
 import Register from "./Register";
+import Navbar from "./Navbar";
 import Welcome from "./Welcome";
 import FitbitAuth from "./FitbitAuth";
 import Home from "./Home";
@@ -25,7 +25,8 @@ class App extends Component {
       authError: null,
       isRefreshing: false,
       client_id: "22BFR5",
-      client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b"
+      client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b",
+      button: "login"
     };
   }
 
@@ -69,6 +70,12 @@ class App extends Component {
     );
   };
 
+  // setButton = button => {
+  //   console.log('button passed from Navbar: ', button)
+  //   this.setState({ button });
+  //   console.log('button state in setButton after setState: ', this.state.button)
+  // };
+
   encodeClientCredentials = (client_id, client_secret) => {
     return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   };
@@ -76,7 +83,7 @@ class App extends Component {
   refreshFitbitToken = async () => {
     let headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Basic ${this.props.authorization.encodeClientCredentials(
+      Authorization: `Basic ${this.encodeClientCredentials(
         this.state.client_id,
         this.state.client_secret
       )}`
@@ -131,6 +138,7 @@ class App extends Component {
       authData: null,
       setAuthState: this.setAuthState,
       getUserData: this.getUserData
+      //button: this.setButton
     };
 
     const authorizationProps = {
@@ -139,7 +147,7 @@ class App extends Component {
       grant_type: "authorization_code",
       client_id: "22BFR5",
       client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b",
-      redirect_uri: "http://localhost:3000",
+      redirect_uri: "https://enigmatic-inlet-88857.herokuapp.com/",
       scope: "activity heartrate profile sleep weight",
       encodeClientCredentials: this.encodeClientCredentials
     };
