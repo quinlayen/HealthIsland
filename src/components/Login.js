@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Hub } from "aws-amplify";
-import { Authenticator, Greetings } from "aws-amplify-react";
+import { Authenticator, Greetings, AmplifyTheme } from "aws-amplify-react";
 
 class Login extends Component {
   constructor(props) {
@@ -35,9 +35,16 @@ class Login extends Component {
   }
 
   render() {
+    const theme = {
+      ...AmplifyTheme,
+      button: {
+        ...AmplifyTheme.button,
+        backgroundColor: "var(--light-blue)"
+      }
+    };
     return (
       <div className="login">
-        <Authenticator hide={[Greetings]} />
+        <Authenticator hide={[Greetings]} theme={theme} />
       </div>
     );
   }
@@ -45,16 +52,3 @@ class Login extends Component {
 
 export default Login;
 
-// if (this.props.button === "login") {
-//   return (
-//     <div className="login">
-//       <Authenticator hide={[Greetings]} />
-//     </div>
-//   );
-// } else {
-//   return (
-//     <div className="register">
-//       <Authenticator authState="signUp" />
-//     </div>
-//   );
-// }

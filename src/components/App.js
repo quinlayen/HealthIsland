@@ -147,7 +147,8 @@ class App extends Component {
       grant_type: "authorization_code",
       client_id: "22BFR5",
       client_secret: "4b8a3457b12d1c5c3d885601e1e55a5b",
-      redirect_uri: "https://enigmatic-inlet-88857.herokuapp.com/",
+      //redirect_uri: "http://localhost:3000/auth/callback",
+      redirect_uri: "https://enigmatic-inlet-88857.herokuapp.com/auth/callback",
       scope: "activity heartrate profile sleep weight",
       encodeClientCredentials: this.encodeClientCredentials
     };

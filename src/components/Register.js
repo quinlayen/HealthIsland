@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Hub } from "aws-amplify";
-import { Authenticator, Greetings } from "aws-amplify-react";
+import { Authenticator, Greetings, AmplifyTheme } from "aws-amplify-react";
 
 class Register extends Component {
   constructor(props) {
@@ -35,9 +35,16 @@ class Register extends Component {
   }
 
   render() {
+    const theme = {
+      ...AmplifyTheme,
+      button: {
+        ...AmplifyTheme.button,
+        backgroundColor: "var(--light-blue)"
+      }
+    };
     return (
       <div className="register">
-        <Authenticator authState="signUp" hide={[Greetings]} />
+        <Authenticator authState="signUp" hide={[Greetings]} theme={theme} />
       </div>
     );
   }
