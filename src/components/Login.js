@@ -41,11 +41,7 @@ class Login extends Component {
         ...AmplifyTheme.button,
         backgroundColor: "var(--light-blue)"
       }
-<<<<<<< HEAD
-    }
-=======
     };
->>>>>>> flowRefactor
     return (
       <div className="login">
         <Authenticator hide={[Greetings]} theme={theme} />
