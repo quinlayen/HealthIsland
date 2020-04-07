@@ -42,6 +42,8 @@ class App extends Component {
       console.log(error);
     }
     this.setState({ isAuthenticating: false });
+    const codeVerifier = await this.createCodeVerifier();
+    const codeChallenge = await this.createCodeChallenge(codeVerifier);
     this.setInterceptors();
   }
 
@@ -76,9 +78,29 @@ class App extends Component {
   //   console.log('button state in setButton after setState: ', this.state.button)
   // };
 
+  createCodeVerifier = () => {
+    const validChars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let array = new Uint8Array(40);
+    window.crypto.getRandomValues(array);
+    array = array.map(x => validChars.charCodeAt(x % validChars.length));
+    const codeVerifier = String.fromCharCode.apply(null, array);
+    console.log("codeVerifier: ", codeVerifier);
+    return codeVerifier
+  };
+
+  codeChallenge = (codeVerifier) => {
+    const codeChallenge = new Buffer.from(`${codeVerifier}`).toString("base64");
+    console.log("codeChallenge: ", codeChallenge);
+    return codeChallenge
+  }
+ 
+
+
   encodeClientCredentials = (client_id, client_secret) => {
     return new Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   };
+
 
   refreshFitbitToken = async () => {
     let headers = {
