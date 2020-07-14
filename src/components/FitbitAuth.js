@@ -11,15 +11,22 @@ class FitbitAuth extends Component {
     super(props);
   }
 
-  createOauthState = () => {
+  createCodeVerifier = async () => {
     const validChars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let array = new Uint8Array(40);
     window.crypto.getRandomValues(array);
     array = array.map(x => validChars.charCodeAt(x % validChars.length));
-    const state = String.fromCharCode.apply(null, array);
-    console.log("state: ", state);
-    return state;
+    const codeVerifier = String.fromCharCode.apply(null, array);
+    console.log("codeVerifier: ", codeVerifier);
+    await this.createCodeChallenge(codeVerifier);
+    return codeVerifier;
+  };
+
+  createCodeChallenge = codeVerifier => {
+    const codeChallenge = new Buffer.from(`${codeVerifier}`).toString("base64");
+    console.log("codeChallenge: ", codeChallenge);
+    return codeChallenge;
   };
 
   // encodeClientCredentials = (client_id, client_secret) => {
@@ -92,6 +99,7 @@ class FitbitAuth extends Component {
       redirect_uri,
       scope
     } = this.props.authorization;
+    this.createCodeVerifier();
     return (
       <Fragment>
         <section className="fitbitauth section group">
@@ -116,7 +124,7 @@ class FitbitAuth extends Component {
                     </div>
                     <div className="section group">
                       <a
-                        href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`}
+                        href={`${url}?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&code_challenge=${this.createCodeChallenge}$code_challenge_method="s256"&scope=${scope}`}
                         className="button is-link"
                       >
                         Access Fitbit Account

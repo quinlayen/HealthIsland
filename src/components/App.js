@@ -13,6 +13,7 @@ import Footer from "./Footer";
 import Callback from "./Callback";
 import { Auth } from "aws-amplify";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import sha256 from 'crypto-js/sha256';
 
 class App extends Component {
   constructor(props) {
